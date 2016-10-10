@@ -1,0 +1,67 @@
+<nav>
+  <div class="nav-wrapper blue-grey darken-1">
+    <a href="#!" class="brand-logo center">DBSP Remember Me</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="left hide-on-med-and-down">
+      <li><a (click)="toHome()" [ngClass]="{'nav-link-active': homeIsActive}">Home</a></li>
+      <li><a (click)="openContactsSecurityMessage()" [ngClass]="{'nav-link-active': contactsIsActive}">Contacts</a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a (click)="toHome()" [ngClass]="{'nav-link-active': homeIsActive}">Home</a></li>
+      <li><a (click)="openContactsSecurityMessage()" [ngClass]="{'nav-link-active': contactsIsActive}">Contacts</a></li>
+    </ul>
+    <ul class="right">
+      <li *ngIf="mgr.expired"><a (click)="login()">Log in</a></li>
+      <li *ngIf="!mgr.expired"><a (click)="openLogoutMessage()">You're logged as {{ mgr.profile.given_name }}</a></li>
+    </ul>
+  </div>
+</nav>
+
+<br />
+
+<div class="row">
+  <div class="col s12 m4">
+    <div class="col s12 offset-m1">
+      <user-info></user-info>
+    </div>
+  </div>
+
+  <div class="col s12 m8">
+    <div class="col s12">
+      <head-container></head-container>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Used for asking to log in on Contacts -->
+<div id="contactsAccessModal" class="modal">
+  <div class="modal-content">
+    <h4>Log in is required</h4>
+    <p>You must be logged in to view this section.</p>
+  </div>
+  <div class="modal-footer">
+    <a (click)="cancelToContacts()"
+       class="modal-action modal-close waves-effect waves-teal btn btn-flat">Discard</a>
+    <a (click)="toNotes()"
+       class="modal-action modal-close waves-effect waves-teal btn btn-flat">Agree</a>
+  </div>
+</div>
+
+<!-- Used for asking to log out -->
+<div id="logoutModal" class="modal">
+  <div class="modal-content">
+    <h4>Log out confirmation</h4>
+    <p>Are you sure to log out of the application?</p>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeLogoutMessage()"
+       class="modal-action modal-close waves-effect waves-teal btn btn-flat">Cancel</a>
+    <a (click)="logOutOfIdSrv()"
+       class="modal-action modal-close waves-effect waves-teal btn btn-flat">Yes</a>
+  </div>
+</div>
+

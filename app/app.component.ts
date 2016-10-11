@@ -31,12 +31,15 @@ export class AppComponent implements OnInit {
   public contactsIsActive: boolean;
   private mgr;
 
+  public loggedFlag: boolean;
+
   public constructor (private _oidcmanager: OidcTokenManagerService,
     private _elRef: ElementRef,
     private _router: Router,
     @Inject("$") private $: any) {
 
     this.mgr = this._oidcmanager.mgr;
+    this.loggedFlag = false;
   }
 
   public ngOnInit () {
@@ -48,13 +51,13 @@ export class AppComponent implements OnInit {
       });
   }
 
-  public logOutOfIdSrv () {
-    this.mgr.redirectForLogout();
-  }
+  // public login() {
+  //   this.mgr.redirectForToken();
+  // }
 
-  public login() {
-    this.mgr.redirectForToken();
-  }
+  // public logOutOfIdSrv () {
+  //   this.mgr.redirectForLogout();
+  // }
 
   public openContactsSecurityMessage() {
     if (this.mgr.expired) {

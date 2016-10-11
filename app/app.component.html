@@ -23,8 +23,8 @@
       <li><a (click)="openContactsSecurityMessage()" [ngClass]="{'nav-link-active': contactsIsActive}">Contacts</a></li>
     </ul>
     <ul class="right">
-      <li *ngIf="mgr.expired"><a (click)="login()">Log in</a></li>
-      <li *ngIf="!mgr.expired"><a (click)="openLogoutMessage()">You're logged as {{ mgr.profile.given_name }}</a></li>
+      <!--<li *ngIf="mgr.expired"><a (click)="login()">Log in</a></li>
+      <li *ngIf="!mgr.expired"><a (click)="openLogoutMessage()">You're logged as {{ mgr.profile.given_name }}</a></li>-->
     </ul>
   </div>
 </nav>

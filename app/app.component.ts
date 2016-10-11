@@ -20,7 +20,7 @@ import { OidcTokenManagerService }                from "./common.services/oidc-t
       }
   }
   .nav-link-active {
-    background-color: #b0bec5;
+    background-color: #455a64;
   }
   `],
   template: require("./app.component.html")
@@ -28,7 +28,6 @@ import { OidcTokenManagerService }                from "./common.services/oidc-t
 export class AppComponent implements OnInit {
 
   public homeIsActive: boolean;
-  public notesIsActive: boolean;
   public contactsIsActive: boolean;
   private mgr;
 
@@ -57,29 +56,6 @@ export class AppComponent implements OnInit {
     this.mgr.redirectForToken();
   }
 
-  public openNotesSecurityMessage() {
-    if (this.mgr.expired) {
-      this.$(this._elRef.nativeElement)
-        .find("#notesAccessModal").openModal();
-    } else {
-      this.toNotes();
-    }
-  }
-
-  public toNotes() {
-    this._router.navigate(["/notes"]);
-    if (this._router.isActive) {
-      this.contactsIsActive = false;
-      this.notesIsActive = true;
-      this.homeIsActive = false;
-    }
-  }
-
-  public cancelToNotes() {
-    this.$(this._elRef.nativeElement)
-      .find("#notesAccessModal").closeModal();
-  }
-
   public openContactsSecurityMessage() {
     if (this.mgr.expired) {
       this.$(this._elRef.nativeElement)
@@ -93,7 +69,6 @@ export class AppComponent implements OnInit {
     this._router.navigate(["/contacts"]);
     if (this._router.isActive) {
       this.contactsIsActive = true;
-      this.notesIsActive = false;
       this.homeIsActive = false;
     }
   }
@@ -102,7 +77,6 @@ export class AppComponent implements OnInit {
     this._router.navigate(["/home"]);
     if (this._router.isActive) {
       this.contactsIsActive = false;
-      this.notesIsActive = false;
       this.homeIsActive = true;
     }
   }

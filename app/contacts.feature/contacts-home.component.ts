@@ -21,6 +21,7 @@ import { PageClickedEventArgs }     from "./contacts-pagination.component";
       <!-- $event is a boolean -->
       <contacts-manager (onOpenAddContactSection)="setIsAddContactSectionEnabled($event)"
                         (onOpenFilterContactSection)="setIsFilterContactSectionEnabled($event)"
+                        (onNewFilterSection)="setIsNewFilterSectionEnabled($event)"
                         (onSendSearchString)="toContactsContainer($event)">               
       </contacts-manager>
 
@@ -33,8 +34,8 @@ import { PageClickedEventArgs }     from "./contacts-pagination.component";
 
   <div class="col s12 m8">
     <div class="col s12">
-      <contacts-new-filter *ngIf="isFilterNoteSectionEnabled"
-                           (onCloseFilterNoteSection)="setIsFilterNoteSectionEnabled($event)"
+      <contacts-new-filter *ngIf="isNewFilterSectionEnabled"
+                           (onCloseFilterNoteSection)="setIsNewFilterSectionEnabled($event)"
                            (onSendSearchString)="toContactsContainer($event)">
       </contacts-new-filter>
 
@@ -53,6 +54,7 @@ export class ContactsHomeComponent {
 
   public isAddContactSectionEnabled: boolean;
   public isFilterContactSectionEnabled: boolean;
+  public isNewFilterSectionEnabled: boolean;
   public searchString: string;
   public filterType: string; 
   public isFilterNoteSectionEnabled: boolean;
@@ -69,6 +71,10 @@ export class ContactsHomeComponent {
 
   public setIsFilterContactSectionEnabled (isFilterContactSectionEnabled: boolean) {
     this.isFilterContactSectionEnabled = isFilterContactSectionEnabled;
+  }
+
+  public setIsNewFilterSectionEnabled (isNewFilterSectionEnabled: boolean) {
+    this.isNewFilterSectionEnabled = isNewFilterSectionEnabled;
   }
 
   public toContactsContainer (searchStringEventArgs: SearchStringEventArgs) {

@@ -3,8 +3,20 @@
     <a href="#!" class="brand-logo center">DBSP Remember Me</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="left hide-on-med-and-down">
-      <li><a (click)="toHome()" [ngClass]="{'nav-link-active': homeIsActive}">Home</a></li>
-      <li><a (click)="openContactsSecurityMessage()" [ngClass]="{'nav-link-active': contactsIsActive}">Contacts</a></li>
+      <li>
+        <div [ngClass]="{'nav-link-active': homeIsActive}">
+          <a [ngStyle]="{'color': homeIsActive ? '#dce775' : 'white' }" (click)="toHome()">
+            Home
+          </a>
+        </div>
+      </li>
+      <li>
+        <div [ngClass]="{'nav-link-active': contactsIsActive}">
+          <a [ngStyle]="{'color': contactsIsActive ? '#dce775' : 'white' }" (click)="openContactsSecurityMessage()">
+            Contacts
+          </a>
+        </div>
+      </li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><a (click)="toHome()" [ngClass]="{'nav-link-active': homeIsActive}">Home</a></li>

@@ -20,7 +20,7 @@ import { SearchStringEventArgs }                   from "./contacts-filter-item.
     <a href="#" class="collection-item waves-effect waves-teal"
        (click)="openFilterContactSection()">Filter contacts</a>
     <a href="#" class="collection-item waves-effect waves-teal"
-       (click)="openFilterContactSection()">New Filter UI</a>
+       (click)="openNewFilterSection()">New Filter UI</a>
   </div>
   `
 })
@@ -28,15 +28,18 @@ export class ContactsManagerComponent implements OnInit {
 
   @Output() private onOpenAddContactSection: EventEmitter<boolean>;
   @Output() private onOpenFilterContactSection: EventEmitter<boolean>;
+  @Output() private onNewFilterSection: EventEmitter<boolean>;
   @Output() private onSendSearchString: EventEmitter<SearchStringEventArgs>;
   private _isAddContactSectionEnabled: boolean = true;
   private _isFilterContactSectionEnabled: boolean = true;
+  private _isNewFilterSectionEnabled: boolean = true;
 
   public constructor(private _elRef: ElementRef,
     @Inject("$") private $: any) {
 
     this.onOpenAddContactSection = new EventEmitter<boolean>();
     this.onOpenFilterContactSection = new EventEmitter<boolean>();
+    this.onNewFilterSection = new EventEmitter<boolean>();
     this.onSendSearchString = new EventEmitter<SearchStringEventArgs>();
   }
   
@@ -53,6 +56,10 @@ export class ContactsManagerComponent implements OnInit {
 
   public openFilterContactSection () {
     this.onOpenFilterContactSection.emit(this._isFilterContactSectionEnabled);
+  }
+
+  public openNewFilterSection () {
+    this.onNewFilterSection.emit(this._isNewFilterSectionEnabled);
   }
 
   // Sending search for all contacts (default).
